@@ -1,0 +1,23 @@
+{% load crispy_forms_tags %}
+{% extends "base.html" %}
+
+{% block content %}
+<!-- 4 forms  -->
+<div class="content-section border-info">
+    <form method="POST">
+        {% csrf_token %}
+        {{form_profile_personal|crispy}}
+
+        <!-- <div class="bank">
+            {{form_profile|crispy}}
+        </div>
+        
+        {{form_profile|crispy}}
+        {{form_profile|crispy}} -->
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+    </form>
+    
+</div>
+{% endblock %}

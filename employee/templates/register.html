@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %}
+<h1>register</h1>
+
+<div class="content-section border-info">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <small class="text-muted">Already have an account?</small>
+    <p>sign in
+    <a class="font-weight-bold" href="{% url 'login' %}">here.</a></p>
+    
+</div>
