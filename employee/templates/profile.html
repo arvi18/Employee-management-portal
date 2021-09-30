@@ -1,12 +1,12 @@
-{% load crispy_forms_tags %}
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <!-- 4 forms  -->
 <div class="content-section border-info">
     <form method="POST">
         {% csrf_token %}
-        {{form_profile_personal|crispy}}
+        {{form_personal_profile|crispy}}
 
         <!-- <div class="bank">
             {{form_profile|crispy}}
