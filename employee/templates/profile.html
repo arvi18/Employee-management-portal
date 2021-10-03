@@ -18,7 +18,6 @@
                 <th scope="col">pk</th>
                 <th scope="col">Username</th>
                 <th scope="col">Name</th>
-                <!-- <th scope="col">Last Name</th> -->
                 <th scope="col">Phone no</th>
                 <th scope="col">Email</th>
                 <th scope="col">Gender</th>
@@ -28,23 +27,23 @@
                 <th scope="col">Blood group</th>
               </tr>
             </thead>
-            {% for emp in employees %}
+            {% for employee in employees %}
 
             <tbody>
               <tr>
                 <td>
-                  <img  id="img_rounded"  src="{{ emp.profile_img.url }}" alt="{{ emp.pk }}'s photo">
+                  <img  id="img_rounded"  src="{{ employee.profile_personal.profile_img.url }}" alt="{{ employee.pk }}'s photo">
                   
                 </td>
-                <td>{{ emp.profile.user.username}}</td>
-                <td>{{ emp.profile.user.first_name }} {{ emp.profile.user.last_name }}</td>
-                <td>{{ emp.profile.phone_no }}</td>
-                <td>{{ emp.profile.user.email }}</td>
-                <td>{{ emp.gender }}</td>
-                <td>{{ emp.dob }}</td>
-                <td>{{ emp.aadhar }}</td>
-                <td>{{ emp.pan }}</td>
-                <td>{{ emp.blood_grp }}</td>
+                <td>{{ employee.profile_personal.user.username}}</td>
+                <td>{{ employee.profile_personal.user.first_name }} {{ employee.profile_personal.user.last_name }}</td>
+                <td>{{ employee.phone_no }}</td>
+                <td>{{ employee.profile_personal.user.email }}</td>
+                <td>{{ employee.gender }}</td>
+                <td>{{ employee.dob }}</td>
+                <td>{{ employee.aadhar }}</td>
+                <td>{{ employee.pan }}</td>
+                <td>{{ employee.blood_grp }}</td>
               </tr>         
             </tbody>
             {% endfor %}
