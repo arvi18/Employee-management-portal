@@ -1,20 +1,23 @@
+from django.contrib.auth.forms import UsernameField
 from django.db import models
-from django.db.models.base import Model
+from django.contrib.auth.models import User
 from PIL import Image
+
+# python manage.py makemigrations
+# python manage.py migrate
+# python manage.py createsuperuser
 
 
 class Employee(models.Model):
-    full_name=models.CharField(max_length=30)
-    phone_no=models.CharField(max_length=13)
-    email=models.EmailField()
-    password = models.CharField(max_length=30)
-    password2 = models.CharField(max_length=30)
+    phone_no=models.CharField(max_length=13, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    USERNAME_FIELD=["phone_no"]
 
     def __str__(self):
-        return self.full_name
+        return self.user.username
 
 class Employee_user_profile(models.Model):
-    username_profile=models.OneToOneField(
+    profile=models.OneToOneField(
         Employee,
         on_delete=models.CASCADE,
         related_name='profile'
@@ -25,9 +28,10 @@ class Employee_user_profile(models.Model):
     aadhar=models.CharField(max_length=12, unique=True)
     pan=models.CharField(max_length=10, unique=True)
     blood_grp=models.CharField(max_length=3)
+    # bank_account_no=
 
     def __str__(self):
-        return self.pk
+        return self.profile.user.username
 
     def save(self, *args, **kwargs):
         super(Employee_user_profile, self).save(*args, **kwargs)
@@ -38,3 +42,15 @@ class Employee_user_profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.profile_img.path)
+
+
+
+            
+# python manage.py makemigrations
+# python manage.py migrate
+# python manage.py createsuperuser
+
+
+# banking acc nno
+# dept
+# salary
