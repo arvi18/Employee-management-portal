@@ -11,16 +11,17 @@ from PIL import Image
 class Employee(models.Model):
     phone_no=models.CharField(max_length=13, unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    USERNAME_FIELD=["phone_no"]
+    USERNAME_FIELD='phone_no'
 
     def __str__(self):
-        return self.user.username
+        __full_name=self.user.first_name+ " " +self.user.last_name
+        return __full_name
 
 class Employee_user_profile(models.Model):
     profile=models.OneToOneField(
         Employee,
         on_delete=models.CASCADE,
-        related_name='profile'
+        related_name='Profile'
     )
     gender=models.CharField(max_length=6)
     dob=models.DateField()
@@ -28,10 +29,11 @@ class Employee_user_profile(models.Model):
     aadhar=models.CharField(max_length=12, unique=True)
     pan=models.CharField(max_length=10, unique=True)
     blood_grp=models.CharField(max_length=3)
-    # bank_account_no=
+    USERNAME_FIELD='aadhar'
 
     def __str__(self):
-        return self.profile.user.username
+        __full_name=self.profile.user.first_name+ " " +self.profile.user.last_name
+        return __full_name
 
     def save(self, *args, **kwargs):
         super(Employee_user_profile, self).save(*args, **kwargs)

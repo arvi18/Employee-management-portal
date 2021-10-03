@@ -1,9 +1,14 @@
 {% extends "base.html" %}
-<!-- {% load static %} -->
 
 {% block content %}
 <!-- 4 forms  -->
-
+<style>
+  #img_rounded{
+    width: 3rem;
+    border-radius: 50%;
+  }
+</style>
+<!-- enctype="multipart/form-data" -->
 <div class="content-section m-4 border-info">
 
     <div class="container p-4">        
@@ -28,7 +33,7 @@
             <tbody>
               <tr>
                 <td>
-                  <img src="{{ emp.profile_img.path }}" alt="{{ emp.pk }}'s photo">
+                  <img  id="img_rounded"  src="{{ emp.profile_img.url }}" alt="{{ emp.pk }}'s photo">
                   
                 </td>
                 <td>{{ emp.profile.user.username}}</td>
