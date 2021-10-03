@@ -3,11 +3,11 @@
 
 <div class="content-section border-info">
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form|crispy}}
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            <button class="btn btn-outline-info" type="submit" value="submit">Sign Up</button>
         </div>
     </form>
     <small class="text-muted">Already have an account?</small>

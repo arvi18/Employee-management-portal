@@ -25,7 +25,7 @@ class Employee_user_profile(models.Model):
     )
     gender=models.CharField(max_length=6)
     dob=models.DateField()
-    profile_img=models.ImageField(default='default.jpg', upload_to='profile_pics')
+    profile_img=models.ImageField(default='default.jpg', upload_to='profile_pics', blank=True)
     aadhar=models.CharField(max_length=12, unique=True)
     pan=models.CharField(max_length=10, unique=True)
     blood_grp=models.CharField(max_length=3)

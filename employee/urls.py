@@ -1,12 +1,13 @@
-
-from django.contrib import admin
 from django.urls import path
+from Employee_management import settings
 from . import views;
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.homeView, name="home"),
     path('login/', views.loginView, name="login"),
-    path('register/', views.registerView, name="register"),
+    path('register/', views.profileUpdateView, name="register"),
+    path('profile-update/', views.profileUpdateView, name="profile-update"),
     path('profile/', views.profileView, name="profile"),
     path('dept/', views.profileView, name="dept"),
     # path('dept/<str:dept_name>/', views.profileView, name="dept_name"),        # redirect to dept

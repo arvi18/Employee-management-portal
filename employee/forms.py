@@ -1,53 +1,52 @@
 from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
-from .models import Employee_user, Employee_user_profile
+from .models import Employee_user_profile
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.forms.formsets import MAX_NUM_FORM_COUNT
+
+
+# python manage.py makemigrations
+# python manage.py migrate
+# python manage.py createsuperuser
+
 
 dept= [
-    ('orange', 'Oranges'),
-    ('cantaloupe', 'Cantaloupes'),
-    ('mango', 'Mangoes'),
-    ('honeydew', 'Honeydews'),
+    ('IT', 'IT'),
+    ('Sales', 'sales'),
+    ('Finance', 'finance'),
+    ('Operations', 'operations'),
+    ('General management', 'general management'),
+    ('Strategy', 'strategy'),
     ]
 
 role= [
-    ('orange', 'Oranges'),
-    ('cantaloupe', 'Cantaloupes'),
-    ('mango', 'Mangoes'),
-    ('honeydew', 'Honeydews'),
+    ('CEO', 'CEO'),
+    ('Manager', 'Manager'),
+    ('President', 'President'),
+    ('Marketing manager', 'Marketing manager'),
+    ('Product manager', 'Product manager'),
+    ('Finance manager', 'Finance manager'),
+    ('Business analyst', 'Business analyst'),
     ]
 
     # label='Department you belong to', widget=forms.Select(choices=dept)
     # label='What is your favorite fruit?', widget=forms.Select(choices=role)
 
-class UserRegisterForm(UserCreationForm):
-    email=forms.EmailField()
-    birthdate = forms.DateInput()
-    phone_no=forms.NumberInput()
+# class Employee_personal_info(forms.Form):
+#     phone_no=forms.CharField(max_length=14)
 
+#     # dept = forms.CharField(label='Department you belong to', widget=forms.Select(choices=dept))
+#     # role = forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=role))
 
-    # dept = forms.CharField(label='Department you belong to', widget=forms.Select(choices=dept))
-    # role = forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=role))
+#     class Meta:
+#         model = Employee_user_profile
+#         exclude=["none"]
+#         # fields = ["phone_no", "password1", "password2"]
+#         #  "username","email", "first_name", "last_name",
+#         #  "username", "first_name", "last_name",trrggggggggggggggg
 
-    class Meta:
-        model = Employee_user
-        fields = ["username", "email", "phone_no", "password1", "password2"]
-        # , "role", "birthdate"
-
-class Profile_personal_RegisterForm(UserCreationForm):
-    full_name=forms.CharField()
-    gender=forms.CharField()
-    dob=forms.DateInput()
-    profile_img=forms.ImageField()
-    aadhar=forms.CharField(max_length=12)
-    pan=forms.CharField(max_length=10)
-    blood_grp=forms.CharField(max_length=3)
-
+class Employee_profile_personal_info(forms.ModelForm):
     class Meta:
         model = Employee_user_profile
-        fields = ["full_name", "CharField", "gender", "dob", "profile_img", "aadhar", "pan", "blood_grp"]
+        fields = ["gender", "dob","profile_img", "aadhar", "pan", "blood_grp"]
 
 
 # class Profile_bank_RegisterForm(UserCreationForm):
@@ -64,9 +63,5 @@ class Profile_personal_RegisterForm(UserCreationForm):
 #     dept=
 #     designation=
 #     phone_no=
-
-
-
-
 
 
