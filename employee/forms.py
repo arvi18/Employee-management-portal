@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import Employee_user_profile
+from django.contrib.auth.models import User
+from .models import Employee, Employee_user_profile
 from django import forms
 
 
@@ -30,23 +31,31 @@ role= [
     # label='Department you belong to', widget=forms.Select(choices=dept)
     # label='What is your favorite fruit?', widget=forms.Select(choices=role)
 
-# class Employee_personal_info(forms.Form):
-#     phone_no=forms.CharField(max_length=14)
+class employeeRegisterForm(UserCreationForm):
+    class Meta:
+        model=User
+        fields=["username", "first_name", "last_name", "email", "password1", "password2"]
 
-#     # dept = forms.CharField(label='Department you belong to', widget=forms.Select(choices=dept))
-#     # role = forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=role))
+class employeeProfilePicForm(forms.ModelForm):
+    class Meta:
+        model=Employee
+        fields=["profile_img"]
+        
 
-#     class Meta:
-#         model = Employee_user_profile
-#         exclude=["none"]
-#         # fields = ["phone_no", "password1", "password2"]
-#         #  "username","email", "first_name", "last_name",
-#         #  "username", "first_name", "last_name",trrggggggggggggggg
+    # dept = forms.CharField(label='Department you belong to', widget=forms.Select(choices=dept))
+    # role = forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=role))
 
-class Employee_profile_personal_info(forms.ModelForm):
+    # class Meta:
+    #     model = Employee_user_profile
+    #     exclude=["none"]
+        # fields = ["phone_no", "password1", "password2"]
+        #  "username","email", "first_name", "last_name",
+        #  "username", "first_name", "last_name",trrggggggggggggggg
+
+class Employee_personal_info(forms.ModelForm):
     class Meta:
         model = Employee_user_profile
-        fields = ["gender", "dob","profile_img", "aadhar", "pan", "blood_grp"]
+        fields = ["gender", "dob", "aadhar", "pan", "blood_grp"]
 
 
 # class Profile_bank_RegisterForm(UserCreationForm):
