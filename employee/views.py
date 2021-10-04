@@ -7,12 +7,6 @@ def homeView(req):
 
     return render(req, "home.html")
 
-def loginView(req):
-    if req.method=="POST":
-        print(req.POST)
-    return render(req, "login.html")
-# unsplash
-
 def registerView(request):
     if request.method == 'POST':
         form = employeeRegisterForm(request.POST)

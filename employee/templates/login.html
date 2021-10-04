@@ -1,26 +1,18 @@
+{% extends "base.html" %}
 {% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Employee Login</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
+
   <body>
     <section class="ftco-section">
         <div class="row justify-content-center">
@@ -37,38 +29,18 @@
                   </div>
                   <div class="w-100">
                     <p class="social-media d-flex justify-content-end">
+                      <a href="#" target=_blank class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span ></a>
                       <a
-                        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-						target=_blank
-                        class="
-                          social-icon
-                          d-flex
-                          align-items-center
-                          justify-content-center
-                        "
-                        ><span class="fa fa-facebook"></span
-                      ></a>
-                      <a
-                        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-						target=_blank
-                        class="
-                          social-icon
-                          d-flex
-                          align-items-center
-                          justify-content-center
-                        "
-                        ><span class="fa fa-twitter"></span
-                      ></a>
+                        href="#" target=_blank
+                        class=" social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
                     </p>
                   </div>
                 </div>
-                <!-- {% url 'login' %} -->
                 <form action="" class="signin-form" method="POST">
                   {% csrf_token %}
                   <div class="form-group mt-3">
                     <input type="text" class="form-control" name="username" required />
-                    <label class="form-control-placeholder" value="{{ username }}" >Username</label
-                    >
+                    <label class="form-control-placeholder" value="{{ username }}" >Username</label>
                   </div>
                   <div class="form-group">
                     <input
@@ -76,21 +48,17 @@
                       type="password"
                       class="form-control"
                       name="password"
-                      required
-                    />
+                      required/>
                     <label class="form-control-placeholder" for="password"
-                      >Password</label
-                    >
+                      >Password</label>
                     <span
                       toggle="#password-field"
-                      class="fa fa-fw fa-eye field-icon toggle-password"
-                    ></span>
+                      class="fa fa-fw fa-eye field-icon toggle-password"></span>
                   </div>
                   <div class="form-group">
                     <button
                       type="submit" value="OK"
-                      class="form-control btn btn-primary rounded submit px-3"
-                    >
+                      class="form-control btn btn-primary rounded submit px-3">
                       Sign In
                     </button>
                   </div>
@@ -109,10 +77,7 @@
         </div>
       </div>
     </section>
+    {% endblock content %}
 
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/popper.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

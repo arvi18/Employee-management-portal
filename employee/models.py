@@ -15,10 +15,10 @@ class Employee(models.Model):
         _user_name=self.user.username+ " (" + self.user.first_name + ")"
         return _user_name
 
-    
+    # overriding save method
     def save(self, *args, **kwargs):
         super(Employee, self).save(*args, **kwargs)
-
+        # using pillow library to deal with images
         img = Image.open(self.profile_img.path)
 
         if img.height > 300 or img.width > 300:
@@ -59,5 +59,3 @@ class Employee_user_profile(models.Model):
 #     def __str__(self):
 #         _name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name
 #         return _name
-
-
