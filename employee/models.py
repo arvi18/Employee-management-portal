@@ -33,14 +33,31 @@ class Employee_user_profile(models.Model):
         on_delete=models.CASCADE,
         related_name='profile_personal'
     )
-    phone_no=models.CharField(max_length=13, unique=True, blank=True)
-    gender=models.CharField(max_length=6)
-    dob=models.DateField()
-    aadhar=models.CharField(max_length=12, unique=True)
-    pan=models.CharField(max_length=10, unique=True)
-    blood_grp=models.CharField(max_length=3)
+    phone_no=models.CharField(max_length=13, unique=True, null=True)
+    gender=models.CharField(max_length=6, null=True)
+    dob=models.DateField(null=True)
+    aadhar=models.CharField(max_length=12, unique=True, null=True)
+    pan=models.CharField(max_length=10, unique=True, null=True)
+    blood_grp=models.CharField(max_length=3, null=True)
     USERNAME_FIELD='aadhar'
 
     def __str__(self):
         __full_name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name
         return __full_name
+
+# class Employee_dept_details(models.Model):
+#     dept_details=models.OneToOneField(
+#         Employee,
+#         on_delete=models.CASCADE,
+#         related_name='dept_details'
+#     )
+#     dept=models.CharField(max_length=30)
+#     role=models.CharField(max_length=30)
+#     salary=models.CharField(max_length=9)
+#     leaves=models.pos
+
+#     def __str__(self):
+#         _name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name
+#         return _name
+
+

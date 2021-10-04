@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from employee.models import *
+from employee.models import Employee, Employee_user_profile
 from .forms import *
 
 def homeView(req):
@@ -11,15 +11,21 @@ def loginView(req):
     if req.method=="POST":
         print(req.POST)
     return render(req, "login.html")
-
+# unsplash
 
 def registerView(request):
     if request.method == 'POST':
         form = employeeRegisterForm(request.POST)
 
         if form.is_valid():
+            # saved posted data into User model(default django model with auth)
             form.save()
+            # Signals.py stuff here
+            # automating deafult profile pic model and blank profile associated.
             username = form.cleaned_data.get('username')
+            _get_user=User.objects.get(username=username)
+            instance=Employee.objects.create(user=_get_user)
+            Employee_user_profile.objects.create(profile_personal=instance)
             messages.success(request, f'Account has been succesfully created for {username}.')
             return redirect('login')
     else:
