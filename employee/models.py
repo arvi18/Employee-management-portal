@@ -26,7 +26,6 @@ class Employee(models.Model):
             img.thumbnail(output_size)
             img.save(self.profile_img.path)
 
-
 class Employee_user_profile(models.Model):
     profile_personal=models.OneToOneField(
         Employee,
@@ -45,17 +44,33 @@ class Employee_user_profile(models.Model):
         __full_name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name
         return __full_name
 
-# class Employee_dept_details(models.Model):
-#     dept_details=models.OneToOneField(
-#         Employee,
-#         on_delete=models.CASCADE,
-#         related_name='dept_details'
-#     )
-#     dept=models.CharField(max_length=30)
-#     role=models.CharField(max_length=30)
-#     salary=models.CharField(max_length=9)
-#     leaves=models.pos
+class Employee_dept_details(models.Model):
+    dept_details=models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='dept_details'
+    )
+    dept=models.CharField(max_length=50, null=True)
+    role=models.CharField(max_length=50, null=True)
+    salary=models.PositiveIntegerField(default=0)
+    leaves=models.PositiveSmallIntegerField(default=0)
 
-#     def __str__(self):
-#         _name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name
-#         return _name
+    def __str__(self):
+        _name=self.dept_details.user.first_name+ " " +self.dept_details.user.last_name
+        return _name
+
+class Employee_bank_details(models.Model):
+    bank_details=models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='bank_details'
+    )
+    bank_acc_no=models.CharField(max_length=12, null=True)
+    bank_name=models.CharField(max_length=34, null=True)
+    pf_no=models.CharField(max_length=12, null=True)
+    temp_address=models.TextField(max_length=200, null=True)
+    per_address=models.TextField(max_length=200, null=True)
+
+    def __str__(self):
+        _name=self.bank_details.user.first_name+ " " +self.bank_details.user.last_name
+        return _name
