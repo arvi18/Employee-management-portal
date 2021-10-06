@@ -37,11 +37,11 @@ class Employee_user_profile(models.Model):
     dob=models.DateField(null=True)
     aadhar=models.CharField(max_length=12, unique=True, null=True)
     pan=models.CharField(max_length=10, unique=True, null=True)
-    blood_grp=models.CharField(max_length=3, null=True)
+    blood_group=models.CharField(max_length=3, null=True)
     USERNAME_FIELD='aadhar'
 
     def __str__(self):
-        __full_name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name
+        __full_name=self.profile_personal.user.first_name+ " " +self.profile_personal.user.last_name+ "' s profile"
         return __full_name
 
 class Employee_dept_details(models.Model):
@@ -56,7 +56,7 @@ class Employee_dept_details(models.Model):
     leaves=models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
-        _name=self.dept_details.user.first_name+ " " +self.dept_details.user.last_name
+        _name=self.dept_details.user.first_name+ "' s _dept_"
         return _name
 
 class Employee_bank_details(models.Model):
@@ -65,12 +65,12 @@ class Employee_bank_details(models.Model):
         on_delete=models.CASCADE,
         related_name='bank_details'
     )
-    bank_acc_no=models.CharField(max_length=12, null=True)
+    bank_account_no=models.CharField(max_length=12, null=True)
     bank_name=models.CharField(max_length=34, null=True)
-    pf_no=models.CharField(max_length=12, null=True)
-    temp_address=models.TextField(max_length=200, null=True)
-    per_address=models.TextField(max_length=200, null=True)
+    pf_number=models.CharField(max_length=12, null=True)
+    temporary_address=models.TextField(max_length=200, null=True)
+    permanent_address=models.TextField(max_length=200, null=True)
 
     def __str__(self):
-        _name=self.bank_details.user.first_name+ " " +self.bank_details.user.last_name
+        _name=self.bank_details.user.first_name+ "' s _bank_"
         return _name

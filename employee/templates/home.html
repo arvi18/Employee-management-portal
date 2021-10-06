@@ -8,14 +8,30 @@
         <div class="card" style="width: 18rem;">
             {{current_name}}
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">  <a href="/profile">profile</a>  </li>
-              <li class="list-group-item">  <a href="/admin/auth/user/">Users</a>  </li>
-              <li class="list-group-item">  <a href="/admin/employee/employee/">employee</a>  </li>
-              <li class="list-group-item">  <a href="/admin/employee/employee_user_profile/">employee_user_profile</a>  </li>
-              <li class="list-group-item">  <a href="{% url 'login' %}">login</a>  </li>
-              <li class="list-group-item">  <a href="{% url 'register' %}">register</a>  </li>
-              <li class="list-group-item">  <a href="{% url 'profile' %}">profile</a>  </li>
-              <li class="list-group-item">  <a href="{% url 'profile-update' %}">profile-update</a>  </li>
+              <li class="list-group-item">
+                  <a href="/profile">profile</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="/admin/auth/user/">Users</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="/admin/employee/employee/">employee</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="/admin/employee/employee_user_profile/">employee_user_profile</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="{% url 'login' %}">login</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="{% url 'register' %}">register</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="{% url 'profile' %}">profile</a>
+                </li>
+              <li class="list-group-item">
+                  <a href="{% url 'profile-update' %}">profile-update</a>
+                </li>
             </ul>
         </div>
     </div>

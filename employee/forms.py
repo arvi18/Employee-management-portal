@@ -45,7 +45,7 @@ class employeeProfilePicForm(forms.ModelForm):
 class employee_personal_info(forms.ModelForm):
     class Meta:
         model = Employee_user_profile
-        fields = ["phone_no", "gender", "dob", "aadhar", "pan", "blood_grp"]
+        fields = ["phone_no", "gender", "dob", "aadhar", "pan", "blood_group"]
 
 class employee_dept_info(forms.ModelForm):
     dept=forms.ChoiceField(choices=dept_list, initial='other', required=True)
@@ -57,4 +57,4 @@ class employee_dept_info(forms.ModelForm):
 class employee_bank_info(forms.ModelForm):
     class Meta:
         model = Employee_bank_details
-        fields = ["bank_acc_no", "bank_name", "pf_no", "temp_address", "per_address"]
+        fields = ["bank_account_no", "bank_name", "pf_number", "temporary_address", "permanent_address"]

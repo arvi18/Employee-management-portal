@@ -1,11 +1,11 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from employee.models import Employee, Employee_user_profile, Employee_dept_details, Employee_bank_details
 from employee.forms import *
 from .forms import *
 
 def homeView(req):
-
     return render(req, "home.html")
 
 def registerView(request):
@@ -30,31 +30,35 @@ def registerView(request):
     return render(request, 'register.html', {'form': form})
 
 
-def profileUpdateView(request):
-    if request.method == 'POST':
-        userId=request.user.pk
-        currentUser=employee_personal_info.objects.get(pk=userId)
-        form = employee_personal_info(request.POST, request.FILES, instance=currentUser)
-
-        if form.is_valid():
-            form.save()
-            
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account has been succesfully updated for {username}.')
-            return redirect('home')
-    else:
-        form = employee_personal_info()
-    return render(request, 'register.html', {'form': form})
-
 def profileView(request):
     employees = Employee_user_profile.objects.all()
     employees_depts = Employee_dept_details.objects.all()
     return render(request, 'profile.html', {'employees': employees, 'employees_depts':employees_depts})
 
-def formss(request):
-    form_pic=employeeProfilePicForm()
-    form_personal=employee_personal_info()
-    form_dept=employee_dept_info()
-    form_bank=employee_bank_info()
-    return render(request, 'forms.html', {'form_pic':form_pic, 'form_personal':form_personal, 'form_dept':form_dept, 'form_bank':form_bank})
+
+@login_required
+def profileUpdateView(request):
+    if request.method == 'POST':
+        form_personal=employee_personal_info(request.POST, instance=request.user.employee.profile_personal)
+        form_dept=employee_dept_info(request.POST, instance=request.user.employee.dept_details)
+        form_bank=employee_bank_info(request.POST, instance=request.user.employee.bank_details)
+
+        if form_personal.is_valid() and form_dept.is_valid() and form_bank.is_valid():
+            form_personal.save()
+            form_dept.save()
+            form_bank.save()
+            username = request.user.username
+            messages.success(request, f'Profile has been succesfully updated.')
+            return redirect('profile-update')
+    else:
+        form_personal=employee_personal_info( instance=request.user.employee.profile_personal )
+        form_dept=employee_dept_info( instance=request.user.employee.dept_details )
+        form_bank=employee_bank_info( instance=request.user.employee.bank_details )
+
+    forms_context={
+        'form_personal':form_personal,
+        'form_dept':form_dept,
+        'form_bank':form_bank
+        }
+    return render(request, 'update_profile.html', forms_context)
     
