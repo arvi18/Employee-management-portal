@@ -29,12 +29,32 @@ def registerView(request):
         form = employeeRegisterForm()
     return render(request, 'register.html', {'form': form})
 
+@login_required
+def accountView(request):
+    if request.method == 'POST':
+        form_account=employeeAccountForm(request.POST, instance=request.user)
+        form_pic = employeeProfilePicForm(request.POST, request.FILES, instance=request.user.employee.profile_personal)
+        # form_account=
+        if form_account.is_valid() and form_pic.is_valid():
+            form_account.save()
+            form_pic.save()
+            messages.success(request, f'Account details have been succesfully updated.')
+            return redirect('account')
+    else:
+        form_account=employeeAccountForm(instance=request.user)
+        form_pic = employeeProfilePicForm(instance=request.user.employee.profile_personal)
+    context_forms={
+        'form_account':form_account,
+        'form_pic':form_pic
+    }
+    return render(request, 'account.html', context_forms)
+
+
 
 def profileView(request):
     employees = Employee_user_profile.objects.all()
     employees_depts = Employee_dept_details.objects.all()
     return render(request, 'profile.html', {'employees': employees, 'employees_depts':employees_depts})
-
 
 @login_required
 def profileUpdateView(request):
@@ -47,7 +67,6 @@ def profileUpdateView(request):
             form_personal.save()
             form_dept.save()
             form_bank.save()
-            username = request.user.username
             messages.success(request, f'Profile has been succesfully updated.')
             return redirect('profile-update')
     else:
