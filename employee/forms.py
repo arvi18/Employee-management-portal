@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.utils import tree
 from .models import Employee, Employee_user_profile ,Employee_dept_details, Employee_bank_details
 from django import forms
 
@@ -12,23 +11,23 @@ from django import forms
 
 
 dept_list= [
-    ('it', 'IT'),
-    ('sales', 'Sales'),
-    ('finance', 'Finance'),
-    ('operations', 'Operations'),
-    ('general management', 'General management'),
-    ('strategy', 'Strategy'),
+    ('IT', 'IT'),
+    ('Sales', 'Sales'),
+    ('Finance', 'Finance'),
+    ('Operations', 'Operations'),
+    ('General management', 'General management'),
+    ('Strategy', 'Strategy'),
     ('other', 'other')
     ]
 
 role_list= [
-    ('ceo', 'CEO'),
-    ('manager', 'Manager'),
-    ('president', 'President'),
-    ('marketing manager', 'Marketing manager'),
-    ('product manager', 'Product manager'),
-    ('finance manager', 'Finance manager'),
-    ('business analyst', 'Business analyst'),
+    ('CEO', 'CEO'),
+    ('Manager', 'Manager'),
+    ('President', 'President'),
+    ('Marketing manager', 'Marketing manager'),
+    ('Product manager', 'Product manager'),
+    ('Finance manager', 'Finance manager'),
+    ('Business analyst', 'Business analyst'),
     ('other', 'other')
     ]
 

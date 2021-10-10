@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- 4 forms  -->
 <style>
   #img_rounded{
     width: 3rem;
-    max-height: 3rem;
+    height: 3rem;
     border-radius: 50%;
     object-fit: cover;
-    background-position: top;
+
+  }
+  #centred{
+    text-align: center;
   }
 </style>
 
@@ -19,29 +21,28 @@
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th scope="col">Username</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Gender</th>
-                <th scope="col">Blood group</th>
+                <th scope="col">Dept</th>
+                <th scope="col">Role</th>
               </tr>
             </thead>
-            
+
             <tbody>
 
               {% for employee in employees %}
               <tr>
-                <td><img  id="img_rounded" src="{{ employee.profile_personal.profile_img.url }}" alt="{{ employee.pk }}'s photo"></td>
-                <td>{{ employee.profile_personal.user.username}}</td>
+                <td><div id="centred"><img class="img-rounded"  id="img_rounded" src="{{ employee.profile_personal.profile_img.url }}" alt="{{ employee.pk }}'s photo"></div></td>
                 <td>{{ employee.profile_personal.user.first_name }} {{ employee.profile_personal.user.last_name }}</td>
                 <td>{{ employee.profile_personal.user.email }}</td>
                 <td>{{ employee.gender }}</td>
-                <td>{{ employee.blood_grp }}</td>
+                <td>{{ employee.profile_personal.dept_details.dept }}</td>
+                <td>{{ employee.profile_personal.dept_details.role }}</td>
                 {% endfor %}
               </tr>
             </tbody>
           </table>
-          <a href="/" class="btn btn-outline-info mt-4">Next</a>
         </div>
         
         {% for field in fields %}
@@ -51,4 +52,5 @@
     </div>
     
 </div>
+
 {% endblock %}

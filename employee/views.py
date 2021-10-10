@@ -51,10 +51,9 @@ def accountView(request):
 
 
 
-def profileView(request):
+def employees_infoView(request):
     employees = Employee_user_profile.objects.all()
-    employees_depts = Employee_dept_details.objects.all()
-    return render(request, 'profile.html', {'employees': employees, 'employees_depts':employees_depts})
+    return render(request, 'employees_info.html', {'employees': employees})
 
 @login_required
 def profileUpdateView(request):
@@ -79,5 +78,4 @@ def profileUpdateView(request):
         'form_dept':form_dept,
         'form_bank':form_bank
         }
-    return render(request, 'update_profile.html', forms_context)
-    
+    return render(request, 'update_profile.html', forms_context)    
