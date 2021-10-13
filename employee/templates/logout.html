@@ -1,2 +1,34 @@
-<h1>log bak in </h1>
-<a href='{% url "login" %}'>here</a>
+{% load static %}
+<style>
+    body{
+        text-align: center;
+        font-family: sans-serif;
+    }
+    h1{
+        font-size: 2.5rem;
+        color: rgba(78, 69, 69, 0.877);
+        padding-top: 5rem;
+        padding-bottom: 1rem;
+    }
+    .btn{
+        text-decoration: none;
+        padding: 1rem;
+        background: white;
+        border: 2px solid rgb(0, 183, 255);
+        border-radius: .4rem;
+        font-size: 1.2rem;
+    }
+    .btn-outline-primary{
+        color: rgb(0, 183, 255);
+    }
+    .btn-outline-primary:hover{
+        background: rgb(0, 183, 255);
+        color: white;
+        border: none;
+    }
+</style>
+
+<body>    
+    <h1>You have succesfully logged out!</h1>
+    <a href="{% url 'login' %}" class="btn btn-outline-primary">log back in</a>
+</body>   

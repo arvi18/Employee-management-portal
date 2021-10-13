@@ -14,7 +14,6 @@ body{
     justify-content: center;
     width: 80vw;
     height: 100vh;
-    /* background: rgba(255, 201, 201, 0.603); */
 }
 .login-head{
     padding: 2.2rem 0;
@@ -30,22 +29,23 @@ body{
     height: 70%;
     align-items: center;
     background: #F8F5F5;
+    border-radius: .8rem 0 0 .8rem;
 }
 .input-field{
     display: flex;
     flex-direction: column;
     padding: 0 3rem;
     margin: 1rem;
-    /* gap: .25rem; */
-    /* justify-content: space-around; */
 }
 
 .right-img{
+    background-image: url(../images/login.png);
+    background-repeat: none;
     background-position: center;
     background-position-y: center;
-    background-image: url(./login.png);
     width: 115%;
     height: 70%;
+    border-radius: 0 .8rem .8rem 0;
 }
 .right-img img{
     width: 100%;
@@ -94,4 +94,28 @@ input::placeholder{
     color: rgba(225, 248, 227, 0.842);
     font-size: 1.4rem;
     padding: 1rem 0;
+}
+
+@media all and (max-width: 900px) {
+    .hero{
+        height: 100vh;
+    }
+    .right-img{
+        display: none;
+    }
+}
+
+@media all and (max-width: 700px) {
+    .hero{
+        height: 100vh;
+        width: auto;
+    }
+    .right-img{
+        display: none;
+    }
+    .left{
+        padding: 0 3rem 3rem 3rem;
+        border: 1px solid white;
+        border-radius: 1rem;
+    }
 }
