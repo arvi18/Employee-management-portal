@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Employee, Employee_user_profile ,Employee_dept_details, Employee_bank_details
+from .models import Employee, Employee_user_profile ,Employee_dept_details, Employee_bank_details, Employee_leaves, Employee_salary
 from django import forms
 
 
@@ -50,7 +50,7 @@ class employeeProfilePicForm(forms.ModelForm):
 class employee_personal_info(forms.ModelForm):
     class Meta:
         model = Employee_user_profile
-        fields = ["phone_no", "gender", "dob", "aadhar", "pan", "blood_group"]
+        fields = ["phone_no", "gender", "dob", "aadhar", "pan", "blood_group", "temporary_address", "permanent_address"]
 
 class employee_dept_info(forms.ModelForm):
     dept=forms.ChoiceField(choices=dept_list, initial='other', required=True)
@@ -62,4 +62,9 @@ class employee_dept_info(forms.ModelForm):
 class employee_bank_info(forms.ModelForm):
     class Meta:
         model = Employee_bank_details
-        fields = ["bank_account_no", "bank_name", "pf_number", "temporary_address", "permanent_address"]
+        fields = ["bank_account_no", "bank_name", "pf_number"]
+
+class employee_bank_info(forms.ModelForm):
+    class Meta:
+        model = Employee_bank_details
+        fields = ["bank_account_no", "bank_name", "pf_number"]

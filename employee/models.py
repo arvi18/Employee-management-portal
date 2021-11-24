@@ -2,11 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 
-# python manage.py makemigrations
-# python manage.py migrate
-# python manage.py createsuperuser
-
-
 class Employee(models.Model):
     profile_img=models.ImageField(default='default.jpg', upload_to='profile_pics')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -38,6 +33,8 @@ class Employee_user_profile(models.Model):
     aadhar=models.CharField(max_length=12, unique=True, null=True)
     pan=models.CharField(max_length=10, unique=True, null=True)
     blood_group=models.CharField(max_length=3, null=True)
+    temporary_address=models.TextField(max_length=200, null=True)
+    permanent_address=models.TextField(max_length=200, null=True)
     USERNAME_FIELD='aadhar'
 
     def __str__(self):
@@ -68,9 +65,41 @@ class Employee_bank_details(models.Model):
     bank_account_no=models.CharField(max_length=12, null=True)
     bank_name=models.CharField(max_length=34, null=True)
     pf_number=models.CharField(max_length=12, null=True)
-    temporary_address=models.TextField(max_length=200, null=True)
-    permanent_address=models.TextField(max_length=200, null=True)
 
     def __str__(self):
         _name=self.bank_details.user.first_name+ "' s _bank_"
         return _name
+
+class Employee_salary(models.Model):
+    salary_details=models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='salary_details'
+    )
+    net_salary=models.CharField(max_length=12, null=True)
+    reimbursement_date=models.DateField(null=True)
+    transaction_id=models.CharField(max_length=30, null=True)
+    receipt_img=models.ImageField(upload_to='receipts', null=True)
+    salary_year=models.SmallIntegerField(default=2021)
+    # hardcode
+
+    def __str__(self):
+        _name=self.salary_details.user.first_name+ "' s _salary_"
+        return _name
+
+class Employee_leaves(models.Model):
+    leaves_details=models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        related_name='leaves_details'
+    )
+    leaves_count=models.SmallIntegerField(default=20, null=True)
+    leaves_type=models.CharField(max_length=30, null=True)
+    leaves_from=models.DateTimeField()
+    leaves_to=models.DateTimeField()
+    # hardcode
+
+    def __str__(self):
+        _name=self.leaves_details.user.first_name+ "' s _leaves_"
+        return _name
+

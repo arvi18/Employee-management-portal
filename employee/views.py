@@ -8,6 +8,9 @@ from .forms import *
 def homeView(req):
     return render(req, "home.html")
 
+def IDView(req):
+    return render(req, "employee_id.html")
+
 def registerView(request):
     if request.method == 'POST':
         form = employeeRegisterForm(request.POST)
@@ -34,7 +37,6 @@ def accountView(request):
     if request.method == 'POST':
         form_account=employeeAccountForm(request.POST, instance=request.user)
         form_pic = employeeProfilePicForm(request.POST, request.FILES, instance=request.user.employee.profile_personal)
-        # form_account=
         if form_account.is_valid() and form_pic.is_valid():
             form_account.save()
             form_pic.save()
@@ -48,8 +50,6 @@ def accountView(request):
         'form_pic':form_pic
     }
     return render(request, 'account.html', context_forms)
-
-
 
 def employees_infoView(request):
     employees = Employee_user_profile.objects.all()
