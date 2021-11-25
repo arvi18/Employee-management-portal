@@ -56,23 +56,10 @@ input{
     padding: .8rem;
     margin: .5rem;
     font-size: 1.1rem;
-    border: 1px solid rgba(129, 121, 121, 0.205);
     border-radius: .7rem;
+    border: 3px solid rgba(61, 61, 61, 0.473);
 
 }
-input::placeholder{
-    color: #7a8b8f;
-    font-weight: 500;
-}
-
-.check{
-    display: flex;
-    color: rgba(117, 102, 102, 0.596);
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1rem;
-}
-
 .btn{
     font-size: .8rem;
     padding: 1rem;

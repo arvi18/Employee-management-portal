@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from employee.models import Employee, Employee_user_profile, Employee_dept_details, Employee_bank_details
+from employee.models import Employee, Employee_user_profile, Employee_dept_details, Employee_bank_details, Employee_leaves
 from employee.forms import *
 from .forms import *
 
 def homeView(req):
     return render(req, "home.html")
 
+@login_required
 def IDView(req):
     return render(req, "employee_id.html")
 
@@ -26,6 +27,7 @@ def registerView(request):
             Employee_user_profile.objects.create(profile_personal=instance)
             Employee_dept_details.objects.create(dept_details=instance)
             Employee_bank_details.objects.create(bank_details=instance)
+            Employee_leaves.objects.create(leaves_details=instance)
             messages.success(request, f'Account has been succesfully created for {username}.')
             return redirect('login')
     else:
@@ -78,4 +80,17 @@ def profileUpdateView(request):
         'form_dept':form_dept,
         'form_bank':form_bank
         }
-    return render(request, 'update_profile.html', forms_context)    
+    return render(request, 'update_profile.html', forms_context)
+
+@login_required
+def leaves_request(request):
+    if request.method=='POST':
+        form_leaves_request=employee_leaves_info(request.POST)
+        if form_leaves_request.is_valid():
+            form_leaves_request.save()
+            messages.success(request, f'Your leave request has been sent succesfully!')
+            return redirect('leaves_portal')
+    else:
+        form_leaves_request=employee_leaves_info(instance=request.user.employee.bank_details)
+
+    return render(request, 'leaves_request.html',{'form_leaves_request':form_leaves_request})

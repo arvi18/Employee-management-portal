@@ -1,6 +1,9 @@
+from django.contrib.auth import models
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import widgets
 from .models import Employee, Employee_user_profile ,Employee_dept_details, Employee_bank_details, Employee_leaves, Employee_salary
+from django.contrib.admin.widgets import AdminSplitDateTime, AdminDateWidget, AdminTimeWidget
 from django import forms
 
 
@@ -68,3 +71,14 @@ class employee_bank_info(forms.ModelForm):
     class Meta:
         model = Employee_bank_details
         fields = ["bank_account_no", "bank_name", "pf_number"]
+
+class employee_leaves_info(forms.ModelForm):
+    leaves_from=forms.DateField(widget=AdminDateWidget())
+    leaves_to=forms.DateField(widget=AdminDateWidget())
+    class Meta:
+        model=Employee_leaves
+        fields=['leaves_from', 'leaves_to', 'leaves_reason', 'leaves_count']
+        widgets={
+            'leaves_from':AdminDateWidget(attrs={'type': 'date'}),
+            'leaves_to':AdminDateWidget()
+        }

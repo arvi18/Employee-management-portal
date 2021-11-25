@@ -2,33 +2,36 @@
 <style>
     body{
         text-align: center;
-        font-family: sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background: rgba(0, 0, 0, 0.842);
     }
     h1{
         font-size: 2.5rem;
-        color: rgba(78, 69, 69, 0.877);
+        color: #eee;
         padding-top: 5rem;
         padding-bottom: 1rem;
     }
     .btn{
+        font-weight: 800;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-decoration: none;
         padding: 1rem;
         background: white;
-        border: 2px solid rgb(0, 183, 255);
+        border: 3px solid rgb(0, 90, 126);
         border-radius: .4rem;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
     .btn-outline-primary{
         color: rgb(0, 183, 255);
     }
     .btn-outline-primary:hover{
         background: rgb(0, 183, 255);
-        color: white;
+        color: #eee;
         border: none;
     }
 </style>
 
 <body>    
     <h1>You have succesfully logged out!</h1>
-    <a href="{% url 'login' %}" class="btn btn-outline-primary">log back in</a>
+    <a href="{% url 'login' %}" class="btn btn-outline-primary">Log back In</a>
 </body>   

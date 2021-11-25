@@ -5,6 +5,14 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .text-muted{
+            color: rgba(128, 128, 128, 0.753);
+            font-size: .8rem;
+            padding-top: 1rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div class="hero">
@@ -20,13 +28,12 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="input-field">
-                    <input type="text" id="userid" name="username" placeholder="username" required>
-                    <input type="password" id="password" name="password" placeholder="password" required>
+                    <input type="text" id="userid" name="username" placeholder="Username" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                     <div class="check">
-                        <input type="checkbox" id="checkbox">
-                        <span>Remember password</span>
-                        </form>
-                    </div>
+                    </form>
+                </div>
+                <p class="text-muted">Not registered yet? Create your free account <a href="/register" style="color: blue;"> here</a> </p>
                     <button class="btn login2-btn" type="submit">Login</button>
                 </div>  
         </div>
