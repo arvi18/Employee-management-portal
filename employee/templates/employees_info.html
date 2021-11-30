@@ -7,17 +7,20 @@
     height: 3rem;
     border-radius: 50%;
     object-fit: cover;
-
   }
   #centred{
     text-align: center;
   }
+  .table-bg{
+    background: linear-gradient(120deg, #dbceb5, #FFD076);
+    border: 5px solid orange;
+  }
 </style>
-
-<div class="content-section m-4 border-info">
-
-    <div class="container p-4">
-          <table class="table table-danger text-dark table-borderless">
+    <div class="head text-center pt-4">
+      <h1>Employee information</h1>
+    </div>
+    <div class="container pt-4 content-section mt-4 border-info">
+          <table class="table table-borderless table-bg">
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -30,7 +33,6 @@
             </thead>
 
             <tbody>
-
               {% for employee in employees %}
               <tr>
                 <td><div id="centred"><img class="img-rounded"  id="img_rounded" src="{{ employee.profile_personal.profile_img.url }}" alt="{{ employee.pk }}'s photo"></div></td>
@@ -43,14 +45,8 @@
               </tr>
             </tbody>
           </table>
-        </div>
         
-        {% for field in fields %}
-          <li>{{field}}</li>
-        {% endfor %}
-
-    </div>
-    
-</div>
-
+            {% for field in fields %}
+              <li>{{field}}</li>
+            {% endfor %}
 {% endblock %}

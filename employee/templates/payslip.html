@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<style>
+  .payslip{
+    border: 5px solid black;
+    border-radius: .5rem;
+    background: #000;
+    padding: 2rem;
+  }
+  #receipt-img img{
+    width: 500px;
+    /* height: 500px; */
+    object-fit: cover;
+  }
+  .btnAlign{
+    width: 50%;
+    /* margin: 0 auto; */
+    /* text-align: center; */
+    /* padding: 2rem 2rem 0; */
+    padding: 2rem;
+  }
+</style>
+<!-- <div class="container p-4">
+  <h1>You have arrived at home page</h1>
+  <h2>Useful links</h2> -->
+  <div class="btnAlign">
+    <button class="btn btn-outline-primary" id="download">Print as pdf</button>
+  </div>
+
+  <div class="payslip container p-4" id="payslip">
+    <p>name: {{ user.first_name }} {{ user.last_name }}</p>
+    <p>transaction id: {{ salary.transaction_id }}</p>
+    <p>net_salary: {{ salary.net_salary }}</p>
+    <p>salary year: {{ salary.salary_year }}</p>
+    <p>reimbursement date: {{ salary.reimbursement_date }}</p>
+    
+    <div id="receipt-img">
+      <h4>Recipt</h4>
+      <img src="{{ salary.receipt_img.url }}" alt="{{ user }}'s receipt">
+    </div>
+  </div>
+
+<script>
+  window.onload = function () {
+    document.getElementById("download").addEventListener("click", () => {
+      const payslip= this.document.getElementById("payslip");
+      var opt = {
+        margin: 1,
+        filename: "payslip.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+      html2pdf().from(payslip).set(opt).save();
+    });
+  };
+</script>
+
+{% endblock content %}

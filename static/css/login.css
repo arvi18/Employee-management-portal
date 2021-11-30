@@ -61,6 +61,7 @@ input{
 
 }
 .btn{
+    font-weight: 800;
     font-size: .8rem;
     padding: 1rem;
     margin: .6rem;
@@ -78,7 +79,6 @@ input{
 }
 .login2-btn{
     margin: 2.4rem 0;
-    color: rgba(225, 248, 227, 0.842);
     font-size: 1.4rem;
     padding: 1rem 0;
 }

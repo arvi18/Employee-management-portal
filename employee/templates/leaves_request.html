@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+    .custom-head{
+        font-size: 1.1rem;
+    }
+    .custom-head h3{
+        text-align: center;
+        color: #eee;
+        background: rgba(0, 0, 0, 0.877);
+        margin:  0 auto;
+        padding: .5rem;
+        border-radius: .5rem;
+        margin-bottom: 2rem;
+        }
+    .custom-head h2{
+        font-size: 2.3rem;
+        text-align: center;
+    }
+    #emp-count{
+        display: flex;
+        font-size: 3rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .grid-card{
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+    }
+    .leaves-list{
+        display: grid;
+    }
+    .grid-card{
+        border: 5px solid #FFC451;
+        background: linear-gradient(#dfd5c0, #ffc551ce);
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: .5rem;
+    }
+    #from{
+        border-bottom: 2px solid rgb(65, 65, 65);
+        padding: 1rem;
+    }
+    .muted{
+        opacity: .7;
+        font-weight: 500;
+    }
+    .badge{
+        display: inline;
+        font-size: .8rem;
+        padding: .5rem;
+        margin: .5rem;
+        border: 2px solid green;
+        border-radius: .5rem;
+        color: #eee;
+        background: green;
+    }
+
+</style>
+    <div class="content-section custom-head shadow" style="margin: 0 6vw; padding: 1vw 3vw;">
+                <h3>
+                    No of leaves remaining: <span id="emp-count">{{total_leaves_count}}</span>
+                </h3>
+                    <h2>Approved Leaves</h2>
+                    <div class="leaves-list">
+                        {% for leave in approved_leaves %}
+                        <div class="grid-card">
+                        <h4  id="emp-count">{{leave.leaves_count}} days <span class="badge">Approved</span></h4>
+                        
+                        <p id="from" >From: {{leave.leaves_from}}</p>
+                        <p>To: {{leave.leaves_to}}</p>
+
+                        <p><span class="muted">Reason mentioned: </span>{{leave.leaves_reason}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container-fluid shadow-sm p-4 mt-4 mb-4">
+                <h2>Submit a new leave request</h2>
+                {{ form_leaves_request|crispy }}
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit" value="submit">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+                            <!-- {% if isApproved %} -->
+                        <!-- {% else %}
+                            <span class="badge yellow">Waiting for approval</span>
+                        {% endif %} -->

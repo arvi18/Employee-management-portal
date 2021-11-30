@@ -98,23 +98,15 @@ class Employee_salary(models.Model):
         _name = self.salary_details.user.first_name + "' s _salary_"
         return _name
 
-
 class Employee_leaves(models.Model):
-    leaves_details = models.OneToOneField(
-        Employee,
-        on_delete=models.CASCADE,
-        related_name='leaves_details'
-    )
+    user = models.ForeignKey(Employee, default=None, on_delete=models.CASCADE,related_name="employee_leaves_details")
     isApproved = models.BooleanField(default=False)
-    total_leaves_count = models.SmallIntegerField(null=True)
-    leaves_count = models.SmallIntegerField(default=1)
+    leaves_count = models.SmallIntegerField(null=True)
+    total_leaves_count = models.SmallIntegerField(default=32)
     leaves_reason = models.TextField(null=True)
-    leaves_from = models.DateField(default=now)
+    leaves_from = models.DateField(default=now, null=True)
     leaves_to = models.DateField(null=True)
-    leaves_id = models.UUIDField(default=uuid.uuid1())
-    USERNAME_FIELD = 'leaves_id'
-    
 
     def __str__(self):
-        _name = self.leaves_details.user.first_name + "' s _leaves_"
+        _name = str(self.id)+' '+self.user.user.first_name
         return _name

@@ -19,7 +19,10 @@
     place-items: center;
   }
   .container1 {
-    background: linear-gradient(rgba(66, 127, 197, 0.452), rgba(80, 56, 185, 0.466));
+    background: linear-gradient(
+      rgba(66, 127, 197, 0.452),
+      rgba(80, 56, 185, 0.466)
+    );
     border-radius: 0.5rem;
     outline: none;
     text-align: center;
@@ -36,7 +39,7 @@
     border-radius: 50%;
     /* padding: 3px; */
     /* background: linear-gradient(to right, blue, purple); */
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   #qr-img {
     max-width: 200px;
@@ -79,7 +82,11 @@
       alt="qr-code"
     />
   </div>
-  <qrcode value="Value to Coder" ec="H" style="width: 50mm; background-color: white; color: black;"></qrcode>
+  <qrcode
+    value="Value to Coder"
+    ec="H"
+    style="width: 50mm; background-color: white; color: black"
+  ></qrcode>
 
   <div class="card-body">
     <p class="card-text text-capitalize name">

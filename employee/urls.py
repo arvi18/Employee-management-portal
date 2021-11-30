@@ -16,7 +16,7 @@ urlpatterns = [
     # path('dept/', views.deptView, name="dept"),
     # path('dept/<str:dept_name>/', views.profileView, name="dept_name"),        # redirect to dept
     # path('dept/<str:dept_name>/designation', views.profileView, name="dept_name"),        # public avl  admin spec add/del
-    # path('payslips/', views.profileView, name="payslips"),      #hardcode salary
+    path('payslip/', views.payslipView, name="payslip"),      #hardcode salary
     path('leaves_portal/', views.leaves_request, name="leaves_portal"),
 
 
