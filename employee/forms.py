@@ -25,6 +25,10 @@ dept_list= [
 
 role_list= [
     ('CEO', 'CEO'),
+    ('COO', 'COO'),
+    ('CTO', 'CTO'),
+    ('CFO', 'CFO'),
+    ('CMO', 'CMO'),
     ('Manager', 'Manager'),
     ('President', 'President'),
     ('Marketing manager', 'Marketing manager'),

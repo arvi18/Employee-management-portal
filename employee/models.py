@@ -92,14 +92,15 @@ class Employee_salary(models.Model):
     transaction_id = models.CharField(max_length=30, null=True)
     receipt_img = models.ImageField(upload_to='receipts', null=True)
     salary_year = models.SmallIntegerField(default=2021)
-    # hardcode
 
     def __str__(self):
         _name = self.salary_details.user.first_name + "' s _salary_"
         return _name
 
+
 class Employee_leaves(models.Model):
-    user = models.ForeignKey(Employee, default=None, on_delete=models.CASCADE,related_name="employee_leaves_details")
+    user = models.ForeignKey(
+        Employee, on_delete=models.CASCADE, related_name="employee_leaves_details")
     isApproved = models.BooleanField(default=False)
     leaves_count = models.SmallIntegerField(null=True)
     total_leaves_count = models.SmallIntegerField(default=32)
@@ -108,5 +109,5 @@ class Employee_leaves(models.Model):
     leaves_to = models.DateField(null=True)
 
     def __str__(self):
-        _name = str(self.id)+' '+self.user.user.first_name
+        _name = str(self.id)+'. '+self.user.user.first_name
         return _name

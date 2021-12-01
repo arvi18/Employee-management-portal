@@ -8,7 +8,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="container-fluid shadow-sm p-4 mt-4 mb-4">
+            <div class="container-fluid shadow-sm p-4 mt-4 pt-0 mb-4">
                 <h2>Personal Details</h2>
                 {{ form_personal|crispy }}
             </div>

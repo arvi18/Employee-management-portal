@@ -1,37 +1,22 @@
+{% extends "base.html" %}
+
 {% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
 <style>
-    body{
-        text-align: center;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        background: rgba(0, 0, 0, 0.842);
-    }
-    h1{
-        font-size: 2.5rem;
-        color: #eee;
-        padding-top: 5rem;
-        padding-bottom: 1rem;
+    .logout{
+        padding: 3rem;
+        background: #eee;
     }
     .btn{
-        font-weight: 800;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        text-decoration: none;
-        padding: 1rem;
-        background: white;
-        border: 3px solid rgb(0, 90, 126);
-        border-radius: .4rem;
-        font-size: 1.4rem;
+        margin: 1rem 0 0;
     }
-    .btn-outline-primary{
-        color: rgb(0, 183, 255);
-    }
-    .btn-outline-primary:hover{
-        background: rgb(0, 183, 255);
-        color: #eee;
-        border: none;
-    }
-</style>
 
-<body>    
-    <h1>You have succesfully logged out!</h1>
-    <a href="{% url 'login' %}" class="btn btn-outline-primary">Log back In</a>
-</body>   
+</style>
+    <div class="logout shadow mt-5">
+        <h1>You have succesfully logged out!</h1>
+        <a href="{% url 'login' %}" class="btn btn-lg btn-outline-primary">Log back In</a>
+    </div>
+
+{% endblock content %}

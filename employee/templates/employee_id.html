@@ -9,16 +9,13 @@
     padding: 1.5rem;
     padding-bottom: 0;
     font-weight: 1000;
-    /* background: -webkit-linear-gradient( blue, purple);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent; */
   }
   .container {
     display: grid;
     place-items: center;
   }
   .container1 {
+    margin: 1.5rem;
     background: linear-gradient(
       rgba(66, 127, 197, 0.452),
       rgba(80, 56, 185, 0.466)
@@ -37,8 +34,6 @@
   .img-rounded {
     width: 150px;
     border-radius: 50%;
-    /* padding: 3px; */
-    /* background: linear-gradient(to right, blue, purple); */
     margin-bottom: 0.5rem;
   }
   #qr-img {
@@ -66,7 +61,7 @@
     margin: 1.5rem;
   }
 </style>
-<button class="btn btn-primary" id="download">Download as pdf</button>
+<!-- <button class="btn btn-primary" id="download">Download as pdf</button> -->
 
 <div class="container1" id="emp_id">
   <h1 class="text-uppercase">Crager IT Solutions</h1>
@@ -100,7 +95,7 @@
     <p class="card-text email">{{ user.email }}</p>
   </div>
 </div>
-<script>
+<!-- <script>
   window.onload = function () {
     document.getElementById("download").addEventListener("click", () => {
       const emp_id = this.document.getElementById("emp_id");
@@ -114,5 +109,5 @@
       html2pdf().from(emp_id).set(opt).save();
     });
   };
-</script>
+</script> -->
 {% endblock content %}

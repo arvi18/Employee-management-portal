@@ -59,25 +59,42 @@
         color: #eee;
         background: green;
     }
+    #no-leaves{
+        font-weight: 600;
+        padding: 1rem;
+        opacity: 0.8;
+        font-size: 1rem;
+        background: rgb(231, 231, 144);
+        border-radius: .4rem;
+    }
+    #leaves{
+        background: rgb(211, 229, 211);
+        padding: .7rem;
+        border-radius: .4rem;
+    }
 
 </style>
     <div class="content-section custom-head shadow" style="margin: 0 6vw; padding: 1vw 3vw;">
                 <h3>
                     No of leaves remaining: <span id="emp-count">{{total_leaves_count}}</span>
                 </h3>
-                    <h2>Approved Leaves</h2>
+                {% if approved_leaves %}
+                    <h2 id="leaves">Approved Leaves</h2>
                     <div class="leaves-list">
                         {% for leave in approved_leaves %}
                         <div class="grid-card">
-                        <h4  id="emp-count">{{leave.leaves_count}} days <span class="badge">Approved</span></h4>
-                        
-                        <p id="from" >From: {{leave.leaves_from}}</p>
-                        <p>To: {{leave.leaves_to}}</p>
-
-                        <p><span class="muted">Reason mentioned: </span>{{leave.leaves_reason}}</p>
+                            <h4  id="emp-count">{{leave.leaves_count}} days <span class="badge">Approved</span></h4>
+                            
+                            <p id="from" >From: {{leave.leaves_from}}</p>
+                            <p>To: {{leave.leaves_to}}</p>
+                            
+                            <p><span class="muted">Reason mentioned: </span>{{leave.leaves_reason}}</p>
                         </div>
                         {% endfor %}
                     </div>
+                {% else %}
+                    <h2 id="no-leaves">No leaves approved.</h2>
+                {% endif %}
                     
         <form method="POST">
             {% csrf_token %}

@@ -102,14 +102,13 @@ def profileUpdateView(request):
 @login_required
 def leaves_request(request):
     cur_emp = request.user.employee
-    print('cur_emp:', Employee_leaves.objects.filter(user=cur_emp))
     try:
         total_leaves_count = Employee_leaves.objects.filter(
             user=cur_emp).first().total_leaves_count
-        print('total_leaves_count:', total_leaves_count)
     except:
         total_leaves_count = 32
-    approved_leaves = Employee_leaves.objects.filter(isApproved=True)
+    approved_leaves = Employee_leaves.objects.filter(
+        user=request.user.employee).filter(isApproved=True)
     if request.method == 'POST':
         form_leaves_request = employee_leaves_info(request.POST)
         if form_leaves_request.is_valid():
@@ -134,5 +133,7 @@ def leaves_request(request):
 @login_required
 def payslipView(request):
     _cur_emp = request.user.employee
-    salary = Employee_salary.objects.filter(salary_details=_cur_emp)
-    return render(request, 'payslip.html', {'salary': salary})
+    _bank_details = Employee_bank_details.objects.filter(
+        bank_details=_cur_emp).first()
+    salary = Employee_salary.objects.filter(salary_details=_cur_emp).first()
+    return render(request, 'payslip.html', {'salary': salary, 'bank_details': _bank_details})

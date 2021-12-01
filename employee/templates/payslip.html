@@ -1,54 +1,64 @@
-{% extends "base.html" %}
-
-{% load static %}
-{% load crispy_forms_tags %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %} {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 <style>
-  .payslip{
-    border: 5px solid black;
-    border-radius: .5rem;
-    background: #000;
+  .payslip {
+    /* border: 5px solid black; */
+    border-radius: 0.5rem;
+    /* background: #000; */
     padding: 2rem;
   }
-  #receipt-img img{
-    width: 500px;
-    /* height: 500px; */
+  #receipt-img img {
+    width: 100%;
     object-fit: cover;
   }
-  .btnAlign{
+  .btnAlign {
     width: 50%;
-    /* margin: 0 auto; */
-    /* text-align: center; */
-    /* padding: 2rem 2rem 0; */
     padding: 2rem;
   }
+  .no-record {
+    padding: 2rem;
+    margin: 2rem;
+  }
+  .btn a {
+    color: blue;
+  }
+  .btn a:hover {
+    color: #eee;
+  }
 </style>
-<!-- <div class="container p-4">
-  <h1>You have arrived at home page</h1>
-  <h2>Useful links</h2> -->
-  <div class="btnAlign">
-    <button class="btn btn-outline-primary" id="download">Print as pdf</button>
-  </div>
 
-  <div class="payslip container p-4" id="payslip">
-    <p>name: {{ user.first_name }} {{ user.last_name }}</p>
-    <p>transaction id: {{ salary.transaction_id }}</p>
-    <p>net_salary: {{ salary.net_salary }}</p>
-    <p>salary year: {{ salary.salary_year }}</p>
-    <p>reimbursement date: {{ salary.reimbursement_date }}</p>
-    
-    <div id="receipt-img">
-      <h4>Recipt</h4>
-      <img src="{{ salary.receipt_img.url }}" alt="{{ user }}'s receipt">
-    </div>
+{% if salary %}
+<div class="btnAlign">
+  <button class="btn btn-outline-primary" id="download">Print as pdf</button>
+</div>
+
+<div class="payslip container shadow p-4" id="payslip">
+  <p>name: {{ user.first_name }} {{ user.last_name }}</p>
+  <p>transaction id: {{ salary.transaction_id }}</p>
+  <p>net salary: {{ salary.net_salary }}</p>
+  <p>salary year: {{ salary.salary_year }}</p>
+  <p>reimbursement date: {{ salary.reimbursement_date }}</p>
+
+  <div id="receipt-img">
+    <h4>Recipt</h4>
+    <img src="{{ salary.receipt_img.url }}" alt="{{ user }}'s receipt" />
   </div>
+</div>
+
+{% else %}
+<div class="no-record container shadow">
+  <p>No record found!</p>
+  <button class="btn btn-outline-primary">
+    <a href="{% url 'home' %}#services">Go Back</a>
+  </button>
+</div>
+
+{% endif %}
 
 <script>
   window.onload = function () {
     document.getElementById("download").addEventListener("click", () => {
-      const payslip= this.document.getElementById("payslip");
+      const payslip = this.document.getElementById("payslip");
       var opt = {
         margin: 1,
         filename: "payslip.pdf",
