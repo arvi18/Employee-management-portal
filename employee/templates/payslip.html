@@ -8,12 +8,13 @@
     padding: 2rem;
   }
   #receipt-img img {
-    width: 100%;
+    width: 70%;
     object-fit: cover;
   }
   .btnAlign {
     width: 50%;
     padding: 2rem;
+    padding-bottom: 0;
   }
   .no-record {
     padding: 2rem;
@@ -25,22 +26,140 @@
   .btn a:hover {
     color: #eee;
   }
+  h4{
+    margin: 2rem 0;
+    font-size: 2rem;
+    background: rgb(240, 240, 200);
+    width: fit-content;
+    padding: .3rem;
+    border-radius: .4rem;
+  }
 </style>
 
 {% if salary %}
 <div class="btnAlign">
   <button class="btn btn-outline-primary" id="download">Print as pdf</button>
 </div>
-
 <div class="payslip container shadow p-4" id="payslip">
-  <p>name: {{ user.first_name }} {{ user.last_name }}</p>
-  <p>transaction id: {{ salary.transaction_id }}</p>
-  <p>net salary: {{ salary.net_salary }}</p>
-  <p>salary year: {{ salary.salary_year }}</p>
-  <p>reimbursement date: {{ salary.reimbursement_date }}</p>
+
+  <html>
+    <head>
+      <style>
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border: 1px solid rgb(145, 132, 132);
+        }
+        table td {
+          line-height: 25px;
+          text-align: center;
+          padding: .3rem;
+        }
+        table th {
+          background-color: orange;
+          color: #363636;
+          text-align: center;
+        }
+      </style>
+    </head>
+    <body>
+      <table border="1">
+        <!-- <tr
+          height="100px"
+          style="
+            background-color: black;
+            color: #ffffff;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+          "
+        >
+          <td colspan="6">STARK INDUSTRIES</td>
+        </tr> -->
+        <tr>
+          <th>Transaction ID:</th>
+          <td>{{ emp.salary_details.transaction_id }}</td>
+          <th>Name</th>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+        </tr>
+        <!-----2 row--->
+        <tr>
+          <th>Bank Name</th>
+          <td>{{ bank_details.bank_name }}</td>
+          <th>Bank A/c No.</th>
+          <td>{{ user.employee.bank_details.bank_account_no }}</td>
+        </tr>
+        <!------3 row---->
+        <tr>
+          <th>PF No.</th>
+          <td>{{ bank_details.pf_number }}</td>
+          <th>Department</th>
+          <td>{{ user.employee.dept_details.dept }}</td>
+        </tr>
+        <!------4 row---->
+        <tr>
+          <th>Designation</th>
+          <td>{{ user.employee.dept_details.role }}</td>
+        </tr>
+      </table>
+      <tr></tr>
+      <br />
+      <table border="1">
+        <tr>
+          <th>Earnings</th>
+          <th>Amount</th>
+          <th>Deductions</th>
+          <th>Amount</th>
+        </tr>
+        <tr>
+          <td>Basic</td>
+          <td>{{ base }}</td>
+          <td>provident fund</td>
+          <td>{{ provident }}</td>
+        </tr>
+        <tr>
+          <td>House Rent Allowance</td>
+          <td>{{ hra }}</td>
+          <td>professional tax</td>
+          <td>{{ professional }}</td>
+        </tr>
+        <tr>
+          <td>special Allowance</td>
+          <td>{{ special }}</td>
+          <td>Income tax</td>
+          <td>{{ income }}</td>
+        </tr>
+        <tr>
+          <td>shift Allowance</td>
+          <td>{{ shift }}</td>
+        </tr>
+        <tr>
+          <td>bonus</td>
+          <td>{{ bonus }}</td>
+        </tr>
+        <tr>
+          <td>medical Allowance</td>
+          <td>{{ medical }}</td>
+        </tr>
+        <tr>
+          <th>Gross Earnings</th>
+          <td>{{ gross_earn }}</td>
+          <th>Gross Deductions</th>
+          <td>{{ gross_deduct }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><strong>NET PAY</strong></td>
+          <td>{{ salary.net_salary }}</td>
+          <td></td>
+        </tr>
+      </table>
+    </body>
+  </html>
+  <!-- ends here  -->
 
   <div id="receipt-img">
-    <h4>Recipt</h4>
+    <h4>Receipt</h4>
     <img src="{{ salary.receipt_img.url }}" alt="{{ user }}'s receipt" />
   </div>
 </div>

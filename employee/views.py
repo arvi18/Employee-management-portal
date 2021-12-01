@@ -125,7 +125,7 @@ def leaves_request(request):
                   {
                       'total_leaves_count': total_leaves_count,
                       'approved_leaves': approved_leaves,
-                      'form_leaves_request': form_leaves_request
+                      'form_leaves_request': form_leaves_request,
                   }
                   )
 
@@ -133,7 +133,27 @@ def leaves_request(request):
 @login_required
 def payslipView(request):
     _cur_emp = request.user.employee
+    _cur_user = request.user
     _bank_details = Employee_bank_details.objects.filter(
         bank_details=_cur_emp).first()
     salary = Employee_salary.objects.filter(salary_details=_cur_emp).first()
-    return render(request, 'payslip.html', {'salary': salary, 'bank_details': _bank_details})
+    salary_int = int(salary.net_salary)
+
+    return render(request, 'payslip.html', 
+    {
+        'salary': salary, 
+        'bank_details': _bank_details, 
+        'base': salary_int*3/5,  
+        'hra': salary_int*1/10,  
+        'special': salary_int*1/20,  
+        'bonus': salary_int*1/5,    
+        'medical': salary_int*1/10,   
+        'shift': salary_int*1/10,   
+        'provident': salary_int*1/20,   
+        'professional': salary_int*1/20,   
+        'income': salary_int*1/10, 
+        'gross_earn': salary_int*6/5, 
+        'gross_deduct': salary_int*1/5, 
+        'emp':_cur_emp,
+        'user':_cur_user,
+        })
