@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.site_header = 'Crager IT solutions pvt limited Admin panel'
-admin.site.site_title = 'Crager IT solutions pvt limited'
+admin.site.site_header = 'STARK INDUSTRIES PVT LTD Admin panel'
+admin.site.site_title = 'STARK INDUSTRIES PVT LTD'
 admin.site.register(Employee)
 admin.site.register(Employee_user_profile)
 admin.site.register(Employee_dept_details)

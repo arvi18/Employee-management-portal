@@ -111,19 +111,3 @@ class Employee_leaves(models.Model):
     def __str__(self):
         _name = str(self.id)+'. '+self.user.user.first_name
         return _name
-
-
-
-
-# # name: parth sheth
-
-# transaction id: #46363536
-
-# net salary: 1200000
-
-# salary year: 2021
-
-# reimbursement date: Dec. 19, 2021
-
-# Recipt
-# parth's receipt

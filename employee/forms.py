@@ -6,13 +6,6 @@ from .models import Employee, Employee_user_profile ,Employee_dept_details, Empl
 from django.contrib.admin.widgets import AdminSplitDateTime, AdminDateWidget, AdminTimeWidget
 from django import forms
 
-
-# python manage.py makemigrations
-# python manage.py migrate
-# python manage.py createsuperuser
-# python manage.py runserver
-
-
 dept_list= [
     ('IT', 'IT'),
     ('Sales', 'Sales'),
