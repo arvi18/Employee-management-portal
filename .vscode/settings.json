@@ -6,5 +6,6 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "PERIODIC.C": "cpp"
-    }
+    },
+    "python.formatting.provider": "autopep8"
 }

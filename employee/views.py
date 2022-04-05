@@ -139,7 +139,7 @@ def payslipView(request):
     salary = Employee_salary.objects.filter(salary_details=_cur_emp).first()
     salary_int = int(salary.net_salary)
 
-    return render(request, 'payslip.html', 
+    return render(request, 'payslip.html',
     {
         'salary': salary, 
         'bank_details': _bank_details, 

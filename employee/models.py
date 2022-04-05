@@ -97,7 +97,6 @@ class Employee_salary(models.Model):
         _name = self.salary_details.user.first_name + "' s _salary_"
         return _name
 
-
 class Employee_leaves(models.Model):
     user = models.ForeignKey(
         Employee, on_delete=models.CASCADE, related_name="employee_leaves_details")
